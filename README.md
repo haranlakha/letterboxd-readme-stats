@@ -18,7 +18,7 @@ A dynamic, high-performance SVG stats card that displays your recently logged [L
 
 Deploy your own instance to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/letterboxd-github-card)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/letterboxd-readme-stats)
 
 Or deploy manually via the Vercel CLI:
 
