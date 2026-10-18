@@ -1,0 +1,86 @@
+import { CardTheme } from './types.js';
+
+export const themes: Record<string, CardTheme> = {
+  dark: {
+    bg: '#0d1117',
+    border: '#30363d',
+    title: '#58a6ff',
+    text: '#c9d1d9',
+    subtext: '#8b949e',
+    star: '#00e054',
+    cardBg: '#161b22',
+    badgeBg: '#21262d',
+    badgeText: '#58a6ff',
+  },
+  letterboxd: {
+    bg: '#14181c',
+    border: '#2c3440',
+    title: '#ffffff',
+    text: '#9ab',
+    subtext: '#678',
+    star: '#00e054',
+    cardBg: '#1b2228',
+    badgeBg: '#2c3440',
+    badgeText: '#00e054',
+  },
+  light: {
+    bg: '#ffffff',
+    border: '#d0d7de',
+    title: '#0969da',
+    text: '#24292f',
+    subtext: '#57606a',
+    star: '#00b044',
+    cardBg: '#f6f8fa',
+    badgeBg: '#eaedf0',
+    badgeText: '#0969da',
+  },
+  tokyonight: {
+    bg: '#1a1b26',
+    border: '#24283b',
+    title: '#7aa2f7',
+    text: '#a9b1d6',
+    subtext: '#565f89',
+    star: '#9ece6a',
+    cardBg: '#1f2335',
+    badgeBg: '#24283b',
+    badgeText: '#7aa2f7',
+  },
+  dracula: {
+    bg: '#282a36',
+    border: '#44475a',
+    title: '#bd93f9',
+    text: '#f8f8f2',
+    subtext: '#6272a4',
+    star: '#50fa7b',
+    cardBg: '#343746',
+    badgeBg: '#44475a',
+    badgeText: '#ff79c6',
+  },
+  catppuccin: {
+    bg: '#1e1e2e',
+    border: '#313244',
+    title: '#89b4fa',
+    text: '#cdd6f4',
+    subtext: '#a6adc8',
+    star: '#a6e3a1',
+    cardBg: '#181825',
+    badgeBg: '#313244',
+    badgeText: '#f5c2e7',
+  },
+  transparent: {
+    bg: 'transparent',
+    border: '#30363d',
+    title: '#58a6ff',
+    text: '#c9d1d9',
+    subtext: '#8b949e',
+    star: '#00e054',
+    cardBg: 'rgba(255, 255, 255, 0.04)',
+    badgeBg: 'rgba(255, 255, 255, 0.08)',
+    badgeText: '#58a6ff',
+  },
+};
+
+export function getTheme(themeName: string = 'letterboxd'): CardTheme {
+  const normalized = (themeName || '').toLowerCase().trim();
+  return themes[normalized] || themes.letterboxd;
+}

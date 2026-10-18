@@ -1,0 +1,26 @@
+{
+  "name": "letterboxd-github-card",
+  "version": "1.0.0",
+  "description": "Dynamic GitHub README stats card for recently logged Letterboxd films",
+  "main": "api/index.ts",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc"
+  },
+  "keywords": [
+    "letterboxd",
+    "github-stats",
+    "readme",
+    "svg",
+    "vercel"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fast-xml-parser": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.4.5"
+  }
+}
