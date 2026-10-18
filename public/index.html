@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letterboxd GitHub Stats Card</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2225%22 cy=%2250%22 r=%2220%22 fill=%22%23ff8000%22/><circle cx=%2250%22 cy=%2250%22 r=%2220%22 fill=%22%2300e054%22/><circle cx=%2275%22 cy=%2250%22 r=%2220%22 fill=%22%2340bcf4%22/></svg>">
+  <style>
+    :root {
+      --bg: #14181c;
+      --card-bg: #1f252b;
+      --border: #2c3440;
+      --text: #ffffff;
+      --subtext: #8b949e;
+      --green: #00e054;
+      --orange: #ff8000;
+      --blue: #40bcf4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-dots {
+      display: inline-flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+    .dot-orange { background-color: var(--orange); }
+    .dot-green { background-color: var(--green); }
+    .dot-blue { background-color: var(--blue); }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    p.desc {
+      color: var(--subtext);
+      font-size: 15px;
+    }
+    .container {
+      width: 100%;
+      max-width: 680px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 580px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--subtext);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: var(--green);
+    }
+    .preview-box {
+      margin-top: 20px;
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      border: 1px dashed var(--border);
+      overflow-x: auto;
+    }
+    .preview-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .code-section {
+      margin-top: 24px;
+    }
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .copy-btn {
+      background: var(--green);
+      color: #000;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .copy-btn:hover { opacity: 0.85; }
+    pre {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+      font-size: 13px;
+      color: var(--green);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-dots">
+      <span class="dot dot-orange"></span>
+      <span class="dot dot-green"></span>
+      <span class="dot dot-blue"></span>
+    </div>
+    <h1>Letterboxd GitHub Stats Card</h1>
+    <p class="desc">Dynamic README stats card displaying recently logged films</p>
+  </div>
+
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="username">Letterboxd Username</label>
+        <input type="text" id="username" value="haranlakha" placeholder="e.g. haranlakha" />
+      </div>
+
+      <div class="form-group">
+        <label for="theme">Theme</label>
+        <select id="theme">
+          <option value="letterboxd" selected>Letterboxd (Default)</option>
+          <option value="dark">GitHub Dark</option>
+          <option value="light">GitHub Light</option>
+          <option value="tokyonight">Tokyo Night</option>
+          <option value="dracula">Dracula</option>
+          <option value="catppuccin">Catppuccin</option>
+          <option value="transparent">Transparent</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="count">Films Count (1–6)</label>
+        <input type="number" id="count" value="4" min="1" max="6" />
+      </div>
+
+      <div class="form-group">
+        <label for="hideBorder">Border</label>
+        <select id="hideBorder">
+          <option value="false">Show Border</option>
+          <option value="true">Hide Border</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="preview-box">
+      <img id="cardPreview" class="preview-img" alt="Card Preview" />
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <label>Markdown for your GitHub README</label>
+        <button class="copy-btn" id="copyBtn">Copy Markdown</button>
+      </div>
+      <pre><code id="markdownSnippet"></code></pre>
+    </div>
+  </div>
+
+  <script>
+    const usernameInput = document.getElementById('username');
+    const themeSelect = document.getElementById('theme');
+    const countInput = document.getElementById('count');
+    const borderSelect = document.getElementById('hideBorder');
+    const previewImg = document.getElementById('cardPreview');
+    const snippetCode = document.getElementById('markdownSnippet');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function updateCard() {
+      const user = usernameInput.value.trim() || 'haranlakha';
+      const theme = themeSelect.value;
+      const count = countInput.value || '4';
+      const hideBorder = borderSelect.value === 'true';
+
+      const origin = window.location.origin;
+      const queryParams = new URLSearchParams({
+        username: user,
+        theme: theme,
+        count: count
+      });
+      if (hideBorder) queryParams.set('hide_border', 'true');
+
+      const cardUrl = `${origin}/api?${queryParams.toString()}`;
+      previewImg.src = cardUrl;
+
+      const markdown = `[![Letterboxd Recent Watches](${cardUrl})](https://letterboxd.com/${user}/)`;
+      snippetCode.textContent = markdown;
+    }
+
+    [usernameInput, themeSelect, countInput, borderSelect].forEach(el => {
+      el.addEventListener('input', updateCard);
+      el.addEventListener('change', updateCard);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(snippetCode.textContent).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = 'Copy Markdown', 2000);
+      });
+    });
+
+    updateCard();
+  </script>
+</body>
+</html>

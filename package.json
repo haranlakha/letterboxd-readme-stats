@@ -5,7 +5,7 @@
   "main": "api/index.ts",
   "scripts": {
     "dev": "vercel dev",
-    "build": "tsc"
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "letterboxd",
